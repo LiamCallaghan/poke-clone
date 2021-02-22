@@ -13,17 +13,23 @@ class Pokedex extends React.Component {
     if (!this.state) return null
     const { number, name, sprite, description, types } = this.state
     return (
-      <div>
-        <p>{number}</p>
-        <p>{name}</p>
-        <img src={sprite} />
-        <p>{description}</p>
-        <ul>
-          {types.map(type => {
-            return <li key={type}>{type}</li>
-          })}
-        </ul>
-      </div>
+      <>
+        <section>
+          <div className='side1'>
+            <img src={sprite} />
+          </div>
+          <div className='side2'>
+            <p>{number}</p>
+            <p>{name}</p>
+            <p>{description}</p>
+            <ul>
+              {types.map(type => {
+                return <li key={type}>{type}</li>
+              })}
+            </ul>
+          </div>
+        </section>
+      </>
     )
   }
 }
