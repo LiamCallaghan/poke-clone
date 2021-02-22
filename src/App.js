@@ -1,7 +1,16 @@
 import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-function App() {
-  return <h1>Hello World</h1>
+import Pokedex from './component/pokedex/Pokedex'
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' component={Pokedex}/>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App
