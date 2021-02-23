@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from 'react-select'
 import { getPokemonByNumber } from '../../lib/api'
 
 class Pokedex extends React.Component {
@@ -7,7 +8,27 @@ class Pokedex extends React.Component {
     name: 'test',
     sprite: 'https://cdn.traction.one/pokedex/pokemon/5.png',
     description: 'default',
+    evolutionLine: [ 'Squirtle', 'Froakie', 'Charmeleon'],
     types: ['fire', 'water'],
+    typeArray: [
+      { value: 'water', label: 'Water' }, 
+      { value: 'bug', label: 'Bug' }, 
+      { value: 'dark', label: 'Dark' }, 
+      { value: 'dragon', label: 'Dragon' }, 
+      { value: 'electric', label: 'Electric' }, 
+      { value: 'fairy', label: 'Fairy' }, 
+      { value: 'fighting', label: 'Fighting' }, 
+      { value: 'fire', label: 'Fire' }, 
+      { value: 'flying', label: 'Flying' }, 
+      { value: 'ghost', label: 'Ghost' }, 
+      { value: 'grass', label: 'Grass' }, 
+      { value: 'ground', label: 'Ground' }, 
+      { value: 'ice', label: 'Ice' }, 
+      { value: 'normal', label: 'Normal' }, 
+      { value: 'poison', label: 'Poison' }, 
+      { value: 'psychic', label: 'Psychic' }, 
+      { value: 'rock', label: 'Rock' }, 
+      { value: 'steel', label: 'Steel' } ],
     value: '',
     value2: 0,
     trueValue: '',
@@ -32,7 +53,6 @@ class Pokedex extends React.Component {
       trueValue: number,
     })
   }
-
   handleSubmit = (event) => {
     console.log(this.state.trueValue)
     this.setState({
@@ -42,14 +62,35 @@ class Pokedex extends React.Component {
     event.preventDefault()
   }
 
+  handleClick = () => {
+    this.setState({
+      number: (this.state.number - 1),
+    })
+  }
+
+  handleClick2 = () => {
+    this.setState({
+      number: (this.state.number + 1),
+    })
+  }
+
   render() {
     if (!this.state) return null
-    const { number, name, sprite, description, types, value, value2 } = this.state
+    const { number, name, sprite, description, evolutionLine, types, typeArray, value, value2 } = this.state
     return (
       <>
         <section>
           <div className='side1'>
             <img src={sprite} />
+            <div className='evoBox'>
+              <a>{evolutionLine[0]}</a>
+              <a>{evolutionLine[1]}</a>
+              <a>{evolutionLine[2]}</a>
+            </div>
+            <div>
+              <button onClick={this.handleClick}>Previous</button>
+              <button onClick={this.handleClick2}>Next</button>
+            </div>
           </div>
           <div className='side2'>
             <p>{number}</p>
@@ -67,6 +108,7 @@ class Pokedex extends React.Component {
             </form>
           </div>
         </section>
+        <Select className= 'select' isMulti options={typeArray} />
       </>
     )
   }

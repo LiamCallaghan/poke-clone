@@ -1,7 +1,7 @@
 .side1 {
   background-color: red;
   img {
-    margin: 15px;
+    margin: 30px;
     background-color: white;
   }
 }
@@ -17,4 +17,8 @@
 
 section {
   display: flex;
+}
+
+.select {
+  width: 77%;
 }
