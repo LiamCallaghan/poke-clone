@@ -15,10 +15,19 @@
   }
 }
 
-section {
-  display: flex;
+.pokemonSprite {
+  width: 250px;
+  height: 250px;
 }
 
 .select {
   width: 77%;
+}
+
+section {
+  display: flex;
+}
+
+a {
+  margin: 0 10px;
 }

@@ -35,8 +35,40 @@ class Pokedex extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await getPokemonByNumber()
-    console.log(response)
+    const response = await getPokemonByNumber(this.state.number)
+    console.log(response.data)
+    this.setState({
+      name: response.data.name,
+      sprite: response.data.sprites.front_default,
+    })
+    if (response.data.types.length > 1) {
+      this.setState({
+        types: [response.data.types[0].type.name, response.data.types[1].type.name],
+      })
+    } else {
+      this.setState({
+        types: [response.data.types[0].type.name],
+      })
+    }
+    console.log(this.state.types)
+  }
+
+  async newPokemon(newID){
+    const response = await getPokemonByNumber(newID)
+    this.setState({
+      name: response.data.name,
+      sprite: response.data.sprites.front_default,
+    })
+    if (response.data.types.length > 1) {
+      this.setState({
+        types: [response.data.types[0].type.name, response.data.types[1].type.name],
+      })
+    } else {
+      this.setState({
+        types: [response.data.types[0].type.name],
+      })
+    }
+    console.log(this.state.types)
   }
 
   handleChange = (event) => {
@@ -66,22 +98,24 @@ class Pokedex extends React.Component {
     this.setState({
       number: (this.state.number - 1),
     })
+    this.newPokemon(this.state.number - 1)
   }
 
   handleClick2 = () => {
     this.setState({
       number: (this.state.number + 1),
     })
+    this.newPokemon(this.state.number + 1)
   }
 
   render() {
     if (!this.state) return null
-    const { number, name, sprite, description, evolutionLine, types, typeArray, value, value2 } = this.state
+    const { number, name, sprite, description, types, evolutionLine, typeArray, value, value2 } = this.state
     return (
       <>
         <section>
           <div className='side1'>
-            <img src={sprite} />
+            <img className='pokemonSprite' src={sprite} />
             <div className='evoBox'>
               <a>{evolutionLine[0]}</a>
               <a>{evolutionLine[1]}</a>
@@ -97,8 +131,8 @@ class Pokedex extends React.Component {
             <p>{name}</p>
             <p>{description}</p>
             <ul>
-              {types.map(type => {
-                return <li key={type}>{type}</li>
+              {types.map(indType => {
+                return <li key={indType.slot}>{(indType)}</li>
               })}
             </ul>
             <form onSubmit={this.handleSubmit}>
