@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+// import Select from 'react-select'
 import { getPokemonByNumber, getPokemonInfo, getEvolutionChain } from '../../lib/api'
 
 class Pokedex extends React.Component {
@@ -10,43 +10,47 @@ class Pokedex extends React.Component {
     otherSprite: '',
     description: 'default',
     flavorText: 'default',
-    evolutionLine: [ 'Squirtle', 'Froakie', 'Charmeleon'],
+    evolutionIndex: [ 0, 1, 2],
+    evolutionLine: [ 'squirtle', 'froakie', 'charmeleon'],
+    evolutionSprites: [ 'test', 'default', 'testing'],
+    placeholderSprites: ['https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'],
     types: ['fire', 'water'],
-    typeArray: [
-      { value: 'water', label: 'Water' }, 
-      { value: 'bug', label: 'Bug' }, 
-      { value: 'dark', label: 'Dark' }, 
-      { value: 'dragon', label: 'Dragon' }, 
-      { value: 'electric', label: 'Electric' }, 
-      { value: 'fairy', label: 'Fairy' }, 
-      { value: 'fighting', label: 'Fighting' }, 
-      { value: 'fire', label: 'Fire' }, 
-      { value: 'flying', label: 'Flying' }, 
-      { value: 'ghost', label: 'Ghost' }, 
-      { value: 'grass', label: 'Grass' }, 
-      { value: 'ground', label: 'Ground' }, 
-      { value: 'ice', label: 'Ice' }, 
-      { value: 'normal', label: 'Normal' }, 
-      { value: 'poison', label: 'Poison' }, 
-      { value: 'psychic', label: 'Psychic' }, 
-      { value: 'rock', label: 'Rock' }, 
-      { value: 'steel', label: 'Steel' } ],
+    // typeArray: [
+    //   { value: 'water', label: 'Water' }, 
+    //   { value: 'bug', label: 'Bug' }, 
+    //   { value: 'dark', label: 'Dark' }, 
+    //   { value: 'dragon', label: 'Dragon' }, 
+    //   { value: 'electric', label: 'Electric' }, 
+    //   { value: 'fairy', label: 'Fairy' }, 
+    //   { value: 'fighting', label: 'Fighting' }, 
+    //   { value: 'fire', label: 'Fire' }, 
+    //   { value: 'flying', label: 'Flying' }, 
+    //   { value: 'ghost', label: 'Ghost' }, 
+    //   { value: 'grass', label: 'Grass' }, 
+    //   { value: 'ground', label: 'Ground' }, 
+    //   { value: 'ice', label: 'Ice' }, 
+    //   { value: 'normal', label: 'Normal' }, 
+    //   { value: 'poison', label: 'Poison' }, 
+    //   { value: 'psychic', label: 'Psychic' }, 
+    //   { value: 'rock', label: 'Rock' }, 
+    //   { value: 'steel', label: 'Steel' } ],
     count: 0,
     value: '',
     value2: '',
     trueValue: '',
+    loadCheck: '',
   }
 
   async componentDidMount() {
     this.newPokemon(this.state.number)
   }
 
-  async newPokemon(newID){
-    const response = await getPokemonByNumber(newID)
-    const info = await getPokemonInfo(newID)
+  async newPokemon(id){
+    const response = await getPokemonByNumber(id)
+    const info = await getPokemonInfo(id)
     const evoChain = await getEvolutionChain(info.data.evolution_chain.url)
-    console.log(evoChain.data.chain)
-    console.log(response.data)
+    // console.log(evoChain.data.chain)
+    // console.log(response.data)
     // this.evolutionTest(evoChain.data.chain.evolves_to)
     const randomTextArray = []
     info.data.flavor_text_entries.forEach( entry => {
@@ -62,7 +66,47 @@ class Pokedex extends React.Component {
       number: response.data.id,
       description: info.data.genera[7].genus,
       flavorText: randomTextArray[Math.floor(Math.random() * randomTextArray.length)],
+      evolutionIndex: [0],
+      evolutionLine: [evoChain.data.chain.species.name],
+      evolutionSprites: [this.pokemonSprite(evoChain.data.chain.species.name)],
     })
+    // console.log(this.state.evolutionSprites[0])
+
+    if (evoChain.data.chain.evolves_to.length === 1) {
+      this.setState({
+        evolutionIndex: [0, 1],
+        evolutionLine: [this.state.evolutionLine[0], evoChain.data.chain.evolves_to[0].species.name],
+        evolutionSprites: [this.state.evolutionSprites[0], this.pokemonSprite(evoChain.data.chain.evolves_to[0].species.name)],
+      })
+      if (evoChain.data.chain.evolves_to[0].evolves_to.length === 1) {
+        this.setState({
+          evolutionIndex: [0, 1, 2],
+          evolutionLine: [this.state.evolutionLine[0], this.state.evolutionLine[1], evoChain.data.chain.evolves_to[0].evolves_to[0].species.name],
+          evolutionSprites: [this.state.evolutionSprites[0], this.state.evolutionSprites[1], this.pokemonSprite(evoChain.data.chain.evolves_to[0].species.name)],
+        })
+      }
+    } else if (evoChain.data.chain.evolves_to.length > 1) {
+      // console.log(evoChain.data.chain.evolves_to)
+      this.setState({
+        evolutionIndex: [0, 1, 2],
+        evolutionLine: [this.state.evolutionLine[0], evoChain.data.chain.evolves_to[0].species.name, evoChain.data.chain.evolves_to[1].species.name],
+        evolutionSprites: [this.state.evolutionSprites[0], this.pokemonSprite(evoChain.data.chain.evolves_to[0].species.name), this.pokemonSprite(evoChain.data.chain.evolves_to[1].species.name)],
+      })
+      if (evoChain.data.chain.evolves_to.length > 1) {
+        this.setState({
+          evolutionIndex: [0, 1, 2, 3],
+          evolutionLine: [this.state.evolutionLine[0], this.state.evolutionLine[1], this.state.evolutionLine[2], evoChain.data.chain.evolves_to[2].species.name],
+          evolutionSprites: [this.state.evolutionSprites[0], this.state.evolutionSprites[1], this.state.evolutionSprites[2], this.pokemonSprite(evoChain.data.chain.evolves_to[2].species.name)],
+        })
+        if (evoChain.data.chain.evolves_to.length === 8) {
+          this.setState({
+            evolutionIndex: [0, 1, 2, 3, 4, 5, 6, 7],
+            evolutionLine: [this.state.evolutionLine[0], this.state.evolutionLine[1], this.state.evolutionLine[2], this.state.evolutionLine[3], evoChain.data.chain.evolves_to[3].species.name, evoChain.data.chain.evolves_to[4].species.name, evoChain.data.chain.evolves_to[5].species.name, evoChain.data.chain.evolves_to[6].species.name, evoChain.data.chain.evolves_to[7].species.name],
+            evolutionSprites: [this.state.evolutionSprites[0], this.state.evolutionSprites[1], this.state.evolutionSprites[2], this.state.evolutionSprites[3], this.pokemonSprite(evoChain.data.chain.evolves_to[3].species.name), this.pokemonSprite(evoChain.data.chain.evolves_to[4].species.name), this.pokemonSprite(evoChain.data.chain.evolves_to[5].species.name), this.pokemonSprite(evoChain.data.chain.evolves_to[6].species.name), this.pokemonSprite(evoChain.data.chain.evolves_to[7].species.name)],
+          })
+        }
+      }
+    }
     if (response.data.types.length > 1) {
       this.setState({
         types: [response.data.types[0].type.name, response.data.types[1].type.name],
@@ -74,22 +118,10 @@ class Pokedex extends React.Component {
     }
   }
 
-  // evolutionTest(string){
-  //   const arr = []
-  //   function evolutionNest(nestString){
-  //     if (nestString.length > 0) {
-  //       console.log(nestString[0].species.name)
-  //       arr.push(string[0].species.name)
-  //       evolutionNest(nestString[0].evolves_to)
-  //     } else {
-  //       console.log(arr)
-  //       this.setState({
-  //         evolutionLine: arr,
-  //       })
-  //     }
-  //   }
-  //   evolutionNest(string)
-  // }
+  async pokemonSprite(id){
+    const response = await getPokemonByNumber(id)
+    return response.data.sprites.front_default
+  }
 
   handleChange = (event) => {
     const letter = event.target.value
@@ -162,18 +194,25 @@ class Pokedex extends React.Component {
     }
   }
 
+  handleClick4 = (event) => {
+    if (event.target.value !== this.state.name) {
+      this.newPokemon(event.target.value)
+    }
+  }
+
   render() {
     if (!this.state) return null
-    const { number, name, sprite, description, flavorText, types, evolutionLine, typeArray, value, value2 } = this.state
+    const { number, name, sprite, description, flavorText, types, evolutionIndex, evolutionLine, placeholderSprites, value, value2 } = this.state
     return (
       <>
         <section>
           <div className='side1'>
             <img className='pokemonSprite' src={sprite} />
             <div className='evoBox'>
-              {evolutionLine.map(evolution => {
-                return <a key={evolution}>{evolution}</a>
+              {evolutionIndex.map(evolution => {
+                return <img onClick={this.handleClick4} value={evolutionLine[evolution]} key={evolution} src={placeholderSprites[evolution]} />
               })}
+
             </div>
             <div>
               <button onClick={this.handleClick}>Previous</button>
@@ -198,7 +237,7 @@ class Pokedex extends React.Component {
             </form>
           </div>
         </section>
-        <Select className= 'select' isMulti options={typeArray} />
+        {/* <Select className= 'select' isMulti options={typeArray} /> */}
       </>
     )
   }
