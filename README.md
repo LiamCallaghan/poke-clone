@@ -34,10 +34,13 @@ Function to show evolution trees
 ![Convoluted Evolution trees](https://i.imgur.com/F96GwnX.png)
 
 Search by name and number inputs
+
 ![Handle change](https://i.imgur.com/3uDpfhG.png)
 
 Front and Back View of sprites
+
 ![Front](https://i.imgur.com/mitUTlY.png)
+
 ![Back](https://i.imgur.com/qjquHyi.png)
 
 Rendered JSX
@@ -47,4 +50,4 @@ Rendered JSX
 
 I plan on including the ability to search by first letter of pokemon name and type.
 
-## Thanks for reading!
+#### Thanks for reading!

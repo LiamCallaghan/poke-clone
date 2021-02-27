@@ -225,7 +225,7 @@ class Pokedex extends React.Component {
             <div className={`bottomBox ${openCheck}`}>
               <div className='evoBox'>
                 {evolutionIndex.map(evolution => {
-                  return <img className='evolutionSprite' onClick={this.handleClick4} value={evolutionLine[evolution]} key={evolution} src={evolutionSprites[evolution]} />
+                  return <button className='evolutionSprite' onClick={this.handleClick4.bind(this)} value={evolutionLine[evolution]} key={evolution} style={{ backgroundImage: `URL(${evolutionSprites[evolution]})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} ></button>
                 })}
               </div>
               <div className='scrollButtons'>
