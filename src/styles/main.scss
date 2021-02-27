@@ -271,26 +271,28 @@ body {
 .scrollButtons {
   margin-top: 75px;
   display: flex;
-  button.next {
-    border-style: none;
-    background-color: red;
-    margin-right: 10px;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 50px solid #555;
-  }
-  button.prev {
-    border-style: none;
-    background-color: red;
-    margin-right: 10px;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-right: 50px solid #555;
-  }
+}
+
+.prev {
+  border-style: none;
+  background-color: red;
+  margin-right: 10px;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-right: 50px solid #555;
+  border-bottom: 25px solid transparent;
+}
+
+.next {
+  border-style: none;
+  background-color: red;
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid #555;
+  border-bottom: 25px solid transparent;
 }
 
 .infoTop {
