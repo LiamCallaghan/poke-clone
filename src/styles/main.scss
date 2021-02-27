@@ -271,20 +271,9 @@ body {
 .scrollButtons {
   margin-top: 75px;
   display: flex;
-  button {
-    border-style: none;
-  background-color: red;
-  margin-right: 10px;
-  width: 0;
-  height: 0;
-  border-top: 25px solid transparent;
-  border-right: 50px solid #555;
-  border-bottom: 25px solid transparent;
-  }
 }
 
 .prev {
-  border-style: none;
   background-color: red;
   margin-right: 10px;
   width: 0;
@@ -295,7 +284,6 @@ body {
 }
 
 .next {
-  border-style: none;
   background-color: red;
   margin-left: 10px;
   width: 0;
