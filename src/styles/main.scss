@@ -1,23 +1,331 @@
+body {
+  background-image: URL('https://cdn.bulbagarden.net/upload/f/f2/Amie_Grass_Wallpaper.png?fbclid=IwAR3kklzyTxOdB48mwvw4KgDdhwsQPSECMssG_DlrSfS6MREYB_E6rhcJY5c');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+@keyframes slideIn {
+  0% {right: 0px;}
+  100% {right: 603px;}
+}
+
+@keyframes slideOut {
+  0% {right: 603px;}
+  100% {right: 0px;}
+}
+
+@keyframes gradientOut {
+  0% {background-color: red;}
+  50% {background-color: darkred;}
+  100% {background-color: red;}
+}
+
+@keyframes displayOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes displayIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes lightOff {
+  0% {background-color: lightblue;}
+  100% {background-color: black;}
+}
+
+@keyframes lightOn {
+  0% {background-color: black;}
+  100% {background-color: lightblue;}
+}
+
 .side1 {
   background-color: red;
   img {
-    margin: 30px;
     background-color: white;
   }
+  width: 600px;
+  height: 845px;
+  z-index: 1;
+}
+
+.side1.open {
+  animation-name: gradientIn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.onLight {
+  margin: 10px;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background-color: lightblue;
+  border-radius: 50%;
+}
+
+.onLight.open {
+  animation-name: lightOn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.onLight.closed.animate {
+  animation-name: lightOff;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.onLight.closed {
+  background-color: black;
+}
+
+.onButton {
+  opacity: 0;
+}
+
+.onButton.open {
+  animation-name: displayOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.onButton.closed.animate {
+  animation-name: displayIn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid yellow;
+  border-bottom: 25px solid transparent;
+  top: 50%;
+  left: 2.5%;
+  transform: translate(-50%, 0%);
+}
+
+.onButton.closed {
+  opacity: 1;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid yellow;
+  border-bottom: 25px solid transparent;
+  top: 50%;
+  left: 2.5%;
+  transform: translate(-50%, 0%);
+}
+
+.hinge {
+  width: 3px;
+  background-color: black;
 }
 
 .side2 {
   background-color: darkred;
-  display: flex;
-  p {
-    // background-color: blue;
-    margin: 10px 5px;
+  margin-top: 5px;
+  // display: flex;
+  width: 600px;
+  height: 835px;
+  position: relative;
+  z-index: 0;
+}
+
+.side2.open {
+  animation-name: slideOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.side1.closed.animate {
+  animation-name: gradientOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.side2.closed {
+  right: 603px;
+}
+
+.side2.closed.animate {
+  animation-name: slideIn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.closeButton {
+  margin: 10px;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-right: 50px solid yellow;
+  border-bottom: 25px solid transparent;
+}
+
+.searchInputs {
+  margin: 15px 0px -15px;
+  text-align: center;
+  input {
+    margin: 0 5px;
+  }
+  .numberInput {
+    width: 40px;
   }
 }
 
+.searchInputs.open {
+  animation-name: displayIn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.searchInputs.closed.animate {
+  animation-name: displayOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.searchInputs.closed {
+  opacity: 0;
+}
+
+.spriteBox {
+  margin: 50px;
+  position: relative;
+}
+
+.spriteBox.open {
+  animation-name: displayIn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.spriteBox.closed.animate {
+  animation-name: displayOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.spriteBox.closed {
+  opacity: 0;
+}
+
 .pokemonSprite {
+  width: 500px;
+  height: 500px;
+}
+
+// button {
+  //   border-style: none;
+  //   background-color: red;
+  // }
+  
+  .flip {
+  color: white;
+  background-color: blue;
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.bottomBox {
+  display: flex;
+}
+
+.bottomBox.open {
+  animation-name: displayIn;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.bottomBox.closed.animate {
+  animation-name: displayOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.bottomBox.closed {
+  opacity: 0;
+}
+
+.evoBox {
+  width: 435px;
+  height: 210px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.evolutionSprite {
+  margin: 15px;
+  width: 75px;
+  height: 75px;
+}
+
+.scrollButtons {
+  margin-top: 75px;
+  display: flex;
+}
+
+.prev {
+  border-style: none;
+  background-color: red;
+  margin-right: 10px;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-right: 50px solid #555;
+  border-bottom: 25px solid transparent;
+}
+
+.next {
+  border-style: none;
+  background-color: red;
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid #555;
+  border-bottom: 25px solid transparent;
+}
+
+.infoTop {
+  text-align: center;
+  margin: 100px 50px 50px;
+  height: 200px;
+  color: white;
+  background-color: black;
+}
+
+.info1 {
+  display: flex;
+  h1 {
+    margin: 25px 0 0;
+  }
+}
+
+.infoText1 {
   width: 250px;
-  height: 250px;
+  height: 60px;
+}
+
+.infoBottom {
+  margin: 50px 50px 10px;
+  height: 200px;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+.flavorText {
+  width: 400px;
+  margin: 10px 50px;
 }
 
 .select {
@@ -26,8 +334,47 @@
 
 section {
   display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, 0%);
 }
 
-a {
-  margin: 0 10px;
+ul {
+  display: flex;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+  width: 250px;
+  // margin: 0px 50px;
+}
+
+.decorative {
+  margin: 10px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  background-color: grey;
+  .change1 {
+    background-color: lightgreen;
+  }
+  .change2 {
+    background-color: orangered;
+  }
+  .change3 {
+    background-color: yellow;
+  }
+  .change4 {
+    background-color: blue;
+  }
+}
+
+.blueSquare {
+  margin: 5px;
+  background-color: darkblue;
+  width: 40px;
+  height: 40px;
 }
