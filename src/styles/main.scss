@@ -376,3 +376,149 @@ li {
   width: 40px;
   height: 40px;
 }
+
+@media screen and (max-width: 320px) {
+  
+  .side1 {
+    width: 120px;
+    height: 165px;
+  }
+
+  .onLight {
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+  }
+
+  .onButton.closed.animate {
+    border-top: 25px solid transparent;
+    border-left: 50px solid yellow;
+    border-bottom: 25px solid transparent;
+  }
+  
+  .onButton.closed {
+    border-top: 25px solid transparent;
+    border-left: 50px solid yellow;
+    border-bottom: 25px solid transparent;
+  }
+  
+  .hinge {
+    width: 3px;
+  }
+  
+  .side2 {
+    margin-top: 5px;
+    width: 120px;
+    height: 165px;
+  }
+  
+  .side2.closed {
+    right: 603px;
+  }
+  
+  .closeButton {
+    margin: 10px;
+    border-top: 25px solid transparent;
+    border-right: 50px solid yellow;
+    border-bottom: 25px solid transparent;
+  }
+  
+  .searchInputs {
+    margin: 15px 0px -15px;
+    input {
+      margin: 0 5px;
+    }
+    .numberInput {
+      width: 40px;
+    }
+  }
+  
+  .spriteBox {
+    margin: 50px;
+  }
+  
+  .pokemonSprite {
+    width: 500px;
+    height: 500px;
+  }
+  
+  .flip {
+    width: 100px;
+    height: 50px;
+  }
+  
+  .evoBox {
+    width: 435px;
+    height: 210px;
+  }
+  
+  .evolutionSprite {
+    margin: 15px;
+    width: 75px;
+    height: 75px;
+  }
+  
+  .scrollButtons {
+    margin-top: 75px;
+  }
+  
+  .prev {
+    margin-right: 10px;
+    border-top: 25px solid transparent;
+    border-right: 50px solid #555;
+    border-bottom: 25px solid transparent;
+  }
+  
+  .next {
+    margin-left: 10px;
+    border-top: 25px solid transparent;
+    border-left: 50px solid #555;
+    border-bottom: 25px solid transparent;
+  }
+  
+  .infoTop {
+    margin: 100px 50px 50px;
+    height: 200px;
+  }
+  
+  .info1 {
+    h1 {
+      margin: 25px 0 0;
+    }
+  }
+  
+  .infoText1 {
+    width: 250px;
+    height: 60px;
+  }
+  
+  .infoBottom {
+    margin: 50px 50px 10px;
+    height: 200px;
+  }
+  
+  .flavorText {
+    width: 400px;
+    margin: 10px 50px;
+  }
+  
+  section {
+    top: 50%;
+    left: 50%;
+  }
+  
+  li {
+    width: 250px;
+  }
+  
+  .decorative {
+    margin: 10px 100px;
+    width: 400px;
+  }
+  
+  .blueSquare {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+  }
+}
