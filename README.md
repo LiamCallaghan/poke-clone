@@ -6,7 +6,7 @@ A Pokedex clone built with React.
 
 ## Deployed Link
 
-Coming soon!
+<pokedex-clone.netlify.app>
 
 ## Technologies used
 
