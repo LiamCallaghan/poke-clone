@@ -275,6 +275,7 @@ body {
   height: 0;
   border-top: 25px solid transparent;
   border-right: 50px solid #555;
+  border-left: -1%;
   border-bottom: 25px solid transparent;
 }
 
@@ -284,6 +285,7 @@ body {
   width: 0;
   height: 0;
   border-top: 25px solid transparent;
+  border-right: -1%;
   border-left: 50px solid #555;
   border-bottom: 25px solid transparent;
 }
@@ -375,7 +377,7 @@ li {
 @media only screen and (max-width: 1440px) {
 
   body {
-    background-image: URL('https://cdn.bulbagarden.net/upload/f/f2/Amie_Grass_Wallpaper.png?fbclid=IwAR3kklzyTxOdB48mwvw4KgDdhwsQPSECMssG_DlrSfS6MREYB_E6rhcJY5c');
+    background-image: URL('https://i.imgur.com/FWh6RB8.png');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -651,6 +653,7 @@ li {
     height: 0;
     border-top: 20px solid transparent;
     border-right: 40px solid #555;
+    border-left: -1%;
     border-bottom: 20px solid transparent;
   }
 
@@ -660,6 +663,7 @@ li {
     width: 0;
     height: 0;
     border-top: 20px solid transparent;
+    border-right: -1%;
     border-left: 40px solid #555;
     border-bottom: 20px solid transparent;
   }
